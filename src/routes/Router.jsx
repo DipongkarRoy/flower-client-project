@@ -6,6 +6,9 @@ import HeroSection from "../components/HeroSection";
 import Service from "../components/Service";
 import Login from "../components/Login";
 import CheekOut from "../components/CheekOut";
+import PrivateRouter from "./PrivateRouter";
+import Booking from "../components/Booking";
+
 
 export const router = createBrowserRouter([
     {
@@ -17,11 +20,11 @@ export const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/about',
+                path: 'about',
                 element: <HeroSection></HeroSection>
             },
             {
-                path: '/flower',
+                path: 'flower',
                 element: <Service></Service>
             },
             
@@ -34,11 +37,16 @@ export const router = createBrowserRouter([
                 element:<Login></Login>
             },
             {
-                path: '/cheekout/:id',
-                element:<CheekOut></CheekOut>,
+                path: 'cheekout/:id',
+                element: <PrivateRouter><CheekOut></CheekOut></PrivateRouter>,
                 loader : ({params})=>fetch(`http://localhost:5000/flowers/${params.id}`)
                 
+            },
+            {
+                path:'booking',
+                element:<Booking></Booking>
             }
+
         ]
     },
 ]);
